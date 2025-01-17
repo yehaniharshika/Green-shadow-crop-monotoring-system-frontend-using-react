@@ -1,52 +1,21 @@
-.custom-link {
-    @apply text-white text-lg font-medium hover:text-indigo-300 transition duration-300;
+/*.link{
+    @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-0
 }
 
-/* Sidebar styling */
-#sidebar {
-    transition: all 0.3s ease;
-    background: linear-gradient(to right, #10ac84, #01a3a4);
-    display: none;  /* Hide by default */
+!*applied directly active class  -  route match*!
+.active{
+    @apply bg-blue-100 text-blue-900;
+}*/
+
+.link {
+    @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-300;
 }
 
-#sidebar.active {
-    display: block; /* Show when active */
-}
-
-#sidebar ul li:hover {
-    background-color: rgb(24, 146, 154);
-    border-radius: 10px;
-}
-
-#sidebar ul li a ion-icon {
-    font-size: 1.4rem;
-    font-weight: bold;
-}
-
-#sidebar ul li a {
-    font-weight: bold;
-    font-family: "Ubuntu", serif;
-}
-
-.logo {
-    padding: 0;
-    margin: 0 auto;
-    display: block;
-}
-
-@media (max-width: 768px) {
-    #sidebar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        z-index: 1050;
-        width: 240px;
-        height: 100%;
-    }
-
-    #sidebar.active {
-        display: block;
-    }
+.link:hover {
+    @apply text-red-600 bg-yellow-300 w-[200px] h-[50px] rounded-[8px];
 }
 
 
+.active {
+    @apply bg-blue-100 text-blue-900;
+}
