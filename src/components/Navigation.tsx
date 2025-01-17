@@ -91,7 +91,7 @@ export const Navigation = () => {
                     <ul className="whitespace-pre px-3 text-[0.9rem] py-5 flex flex-col gap-3 font-bold overflow-x-hidden">
                         <li>
                             <NavLink
-                                to="/"
+                                to="/dashboard"
                                 className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
@@ -102,7 +102,7 @@ export const Navigation = () => {
                         </li>
 
                         <li>
-                            <NavLink to="/add" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/field" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -111,7 +111,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/staff" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -120,7 +120,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/update" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/crop" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -129,7 +129,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/update" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/vehicle" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -138,7 +138,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/update" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/equipment" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -147,7 +147,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/update" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/logs" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -157,7 +157,7 @@ export const Navigation = () => {
                         </li>
                         <br/>
                         <li>
-                            <NavLink to="/" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/setting" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
@@ -166,7 +166,7 @@ export const Navigation = () => {
                             </NavLink>
                         </li>
                         <li>
-                            <NavLink to="/" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
+                            <NavLink to="/signout" className={({ isActive }) => `flex items-center gap-3 p-2 rounded-lg transition-all duration-300 text-[15.5px] 
                                 ${isActive ? "bg-teal-400 text-white shadow-md scale-105" : "text-gray-800"} 
                                 hover:bg-teal-400 hover:text-white hover:scale-105 hover:shadow-[0_4px_8px_rgba(0,0,0,0.3)]`}
                                      style={{ fontFamily: "'Ubuntu', sans-serif" }}>
