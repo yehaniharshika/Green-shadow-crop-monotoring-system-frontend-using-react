@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import CustomerSlice from "../reducers/CustomerSlice.ts";
 import AuthSlice from "../reducers/AuthSlice.ts";
+import FieldSlice from "../reducers/FieldSlice.ts";
 
 
 const store = configureStore({
