@@ -1,7 +1,6 @@
 import './App.css';
 import {createBrowserRouter, RouterProvider} from "react-router";
 import Dashboard from './pages/Dashboard.tsx';
-import UpdateCustomer from './pages/UpdateCustomer.tsx';
 import { Provider } from 'react-redux';
 import store from './store/Store.ts';
 import SignUp from "./components/Signup.tsx";
@@ -11,6 +10,8 @@ import Crop from "./pages/Crop.tsx";
 import RootLayout from "./components/RootLayout.tsx";
 import FieldSection from "./pages/FieldSection.tsx";
 import StaffSection from './pages/StaffSection.tsx';
+import Vehicle from "./pages/Vehicle.tsx";
+import EquipmentSection from "./pages/EquipmentSection.tsx";
 
 
 function App() {
@@ -26,9 +27,8 @@ function App() {
                 { path: '/field', element: <FieldSection/> },
                 { path: '/staff', element: <StaffSection /> },
                 { path: '/crop', element: <Crop /> },
-                { path: '/equipment', element: <UpdateCustomer /> },
-                { path: '/vehicle', element: <UpdateCustomer /> },
-                { path: '/crop', element: <UpdateCustomer /> },
+                { path: '/equipment', element: <EquipmentSection/> },
+                { path: '/vehicle', element: <Vehicle /> },
             ],
         },
     ]);
