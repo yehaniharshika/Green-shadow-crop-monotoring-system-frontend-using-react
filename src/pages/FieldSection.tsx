@@ -6,7 +6,7 @@ import {Navigation} from "../components/Navigation.tsx";
 import {Col, Container, Form, Row, Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import "../components/Field.css";
+import "../components/styles/Field.css";
 
 const FieldSection = () => {
     const [fieldCode, setFieldCode] = useState('');

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router';
-import './Signup.css'
+import './styles/Signup.css'
 
 const SignUp: React.FC = () => {
     const [formData, setFormData] = useState({

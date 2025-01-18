@@ -7,10 +7,10 @@ import store from './store/Store.ts';
 import SignUp from "./components/Signup.tsx";
 import Login from "./components/Login.tsx";
 import {Navigate} from "react-router-dom";
-import Staff from "./pages/Staff.tsx";
 import Crop from "./pages/Crop.tsx";
 import RootLayout from "./components/RootLayout.tsx";
 import FieldSection from "./pages/FieldSection.tsx";
+import StaffSection from './pages/StaffSection.tsx';
 
 
 function App() {
@@ -24,7 +24,7 @@ function App() {
                 { path: '/login', element: <Login /> }, // Login route
                 { path: '/dashboard', element: <Dashboard /> }, // Dashboard route
                 { path: '/field', element: <FieldSection/> },
-                { path: '/staff', element: <Staff /> },
+                { path: '/staff', element: <StaffSection /> },
                 { path: '/crop', element: <Crop /> },
                 { path: '/equipment', element: <UpdateCustomer /> },
                 { path: '/vehicle', element: <UpdateCustomer /> },

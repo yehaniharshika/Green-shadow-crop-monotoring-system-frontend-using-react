@@ -1,4 +1,4 @@
-import "./Navigation.css";
+import "./styles/Navigation.css";
 import { motion } from "framer-motion";
 import { IoIosArrowBack } from "react-icons/io";
 import {NavLink} from "react-router-dom";
