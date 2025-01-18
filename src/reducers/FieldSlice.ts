@@ -17,7 +17,20 @@ const fieldSlice = createSlice({
         addField(state, action: PayloadAction<Field>) {
             state.fields.push(action.payload);
         },
-
+        // Update an existing field
+        updateField(state, action: PayloadAction<Field>) {
+            const index = state.fields.findIndex(
+                (field) => field.fieldCode === action.payload.fieldCode
+            );
+            if (index !== -1) {
+                state.fields[index] = action.payload;
+            }
+        },
+        // Delete a field
+        deleteField(state, action: PayloadAction<string>) {
+            state.fields = state.fields.filter((field) => field.fieldCode !== action.payload
+            );
+        },
     },
 });
 
