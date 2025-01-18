@@ -5,13 +5,12 @@ import UpdateCustomer from './pages/UpdateCustomer.tsx';
 import { Provider } from 'react-redux';
 import store from './store/Store.ts';
 import SignUp from "./components/Signup.tsx";
-
 import Login from "./components/Login.tsx";
 import {Navigate} from "react-router-dom";
-import Field from "./pages/Field.tsx";
 import Staff from "./pages/Staff.tsx";
 import Crop from "./pages/Crop.tsx";
 import RootLayout from "./components/RootLayout.tsx";
+import FieldSection from "./pages/FieldSection.tsx";
 
 
 function App() {
@@ -24,7 +23,7 @@ function App() {
                 { path: '/signup', element: <SignUp /> }, // Sign-Up route
                 { path: '/login', element: <Login /> }, // Login route
                 { path: '/dashboard', element: <Dashboard /> }, // Dashboard route
-                { path: '/field', element: <Field /> },
+                { path: '/field', element: <FieldSection/> },
                 { path: '/staff', element: <Staff /> },
                 { path: '/crop', element: <Crop /> },
                 { path: '/equipment', element: <UpdateCustomer /> },
