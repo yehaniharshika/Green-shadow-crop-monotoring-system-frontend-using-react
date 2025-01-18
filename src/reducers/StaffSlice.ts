@@ -43,7 +43,6 @@ const staffSlice = createSlice({
     },
 });
 
-export const { addStaff, updateStaff, deleteStaff, getStaffById } =
-    staffSlice.actions;
+export const { addStaff, updateStaff, deleteStaff, getStaffById } = staffSlice.actions;
 
 export default staffSlice.reducer;

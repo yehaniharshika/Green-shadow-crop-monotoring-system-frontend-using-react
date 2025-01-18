@@ -3,16 +3,61 @@ import {Col, Container, Form, Row, Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import {useState} from "react";
 import Modal from "react-bootstrap/Modal";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import {addStaff} from "../reducers/StaffSlice.ts";
 
 
 
 
 const StaffSection = () => {
+    const [staffId, setStaffId] = useState("");
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [gender, setGender] = useState("");
+    const [addressLine1, setAddressLine1] = useState("");
+    const [addressLine2, setAddressLine2] = useState("");
+    const [addressLine3, setAddreeLine3] = useState("");
+    const [addressLine4, setAddressLine4] = useState("");
+    const [addressLine5, setAddressLine5] = useState("");
+    const [dateOfBirth, setDateOfBirth] = useState("");
+    const [joinedDate, setJoinedDate] = useState("");
+    const [designation, setDesignation] = useState("");
+    const [contactNumber, setContactNumber] = useState("");
+    const [email, setEmail] = useState("");
+    const [role, setRole] = useState("");
 
+    const dispatch = useDispatch();
+    const staff = useSelector((state: RootState) => state.staff.staff);
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleAddStaff = () => {
+        dispatch(
+            addStaff({staffId,firstName,lastName,gender,addressLine1,addressLine2,addressLine3,addressLine4,addressLine5,dateOfBirth,joinedDate,designation,contactNumber,email,role})
+        );
+
+        setStaffId('');
+        setFirstName('');
+        setLastName('');
+        setGender('');
+        setAddressLine1('');
+        setAddressLine2('');
+        setAddreeLine3('');
+        setAddressLine4('');
+        setAddressLine5('');
+        setDateOfBirth('');
+        setJoinedDate('');
+        setDesignation('');
+        setContactNumber('');
+        setEmail('');
+        setRole('');
+    }
+
+    // update staff
+
 
     return (
         <div className="flex overflow-hidden bg-emerald-200">
@@ -97,7 +142,7 @@ const StaffSection = () => {
                                 <br/>
                                 <Row className="mb-3">
                                     <Col md={6}>
-                                        <Form.Group controlId="staff-id">
+                                        <Form.Group controlId="address-line-01">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line 01(B.
                                                 No)</Form.Label>
@@ -107,7 +152,7 @@ const StaffSection = () => {
                                     </Col>
 
                                     <Col md={6}>
-                                        <Form.Group controlId="firstName">
+                                        <Form.Group controlId="address-line-02">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
                                                 02(Lane)</Form.Label>
@@ -119,7 +164,7 @@ const StaffSection = () => {
 
                                 <Row className="mb-3">
                                     <Col md={6}>
-                                        <Form.Group controlId="lastName">
+                                        <Form.Group controlId="address-line-03">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
                                                 03(City)</Form.Label>
@@ -129,7 +174,7 @@ const StaffSection = () => {
                                     </Col>
 
                                     <Col md={6}>
-                                        <Form.Group controlId="lastName">
+                                        <Form.Group controlId="address-line-04">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
                                                 04(State)</Form.Label>
@@ -141,7 +186,7 @@ const StaffSection = () => {
 
                                 <Row>
                                     <Col md={6}>
-                                        <Form.Group controlId="lastName">
+                                        <Form.Group controlId="address-line-05">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line 05(P.
                                                 code)</Form.Label>
@@ -163,7 +208,7 @@ const StaffSection = () => {
                                     </Col>
 
                                     <Col md={6}>
-                                        <Form.Group controlId="lastName">
+                                        <Form.Group controlId="joined-date">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Joined Date</Form.Label>
                                             <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="date"/>
@@ -201,7 +246,7 @@ const StaffSection = () => {
                                     </Col>
 
                                     <Col md={6}>
-                                        <Form.Group controlId="lastName">
+                                        <Form.Group controlId="role">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Role</Form.Label>
                                             <Form.Select style={{fontFamily: "'Ubuntu', sans-serif"}}>
@@ -220,7 +265,7 @@ const StaffSection = () => {
 
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button className="font-bold" variant="primary">Save</Button>
+                            <Button className="font-bold" variant="primary" onClick={handleAddStaff}>Save</Button>
                             <Button className="font-bold" variant="success" >Update</Button>
                             <Button className="font-bold" variant="danger">Delete</Button>
                             <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
