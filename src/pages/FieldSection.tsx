@@ -73,7 +73,7 @@ const FieldSection = () => {
     };
 
     return (
-        <div className="flex bg-emerald-200">
+        <div className="flex overflow-hidden bg-emerald-200">
             <Navigation />
             <div className="flex-1 p-5">
                 <Container fluid>
@@ -105,21 +105,21 @@ const FieldSection = () => {
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Field
                                         Code</Form.Label>
-                                    <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                    <Form.Control className="border-2 border-slate-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={fieldCode} onChange={e => setFieldCode(e.target.value)}/>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Field
                                         Name</Form.Label>
-                                    <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                    <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={fieldName} onChange={e => setFieldName(e.target.value)}/>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Field
                                         Location</Form.Label>
-                                    <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                    <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={fieldLocation}
                                                   onChange={e => setFieldLocation(e.target.value)}/>
                                 </Form.Group>
@@ -127,7 +127,7 @@ const FieldSection = () => {
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Field
                                         Size (Sq. m)</Form.Label>
-                                    <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="number"
+                                    <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="number"
                                                   value={fieldSize} onChange={e => setFieldSize(e.target.value)}/>
                                 </Form.Group>
 

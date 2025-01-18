@@ -52,7 +52,7 @@ const Dashboard = () => {
     });
 
     return (
-        <div className="flex">
+        <div className="flex w-full h-full bg-teal-500 overflow-hidden">
             {/* Navigation Sidebar */}
             <Navigation />
 
