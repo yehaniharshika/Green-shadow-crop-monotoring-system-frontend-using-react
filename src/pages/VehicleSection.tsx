@@ -1,10 +1,11 @@
 import {Navigation} from "../components/Navigation.tsx";
-import {Col, Container, Form, Row} from "react-bootstrap";
+import {Col, Container, Form, Row, Table} from "react-bootstrap";
 import {useState} from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
+import {addVehicle, deleteVehicle, updateVehicle} from "../reducers/VehicleSlice.ts";
 
 const VehicleSection = () =>{
     const [vehicleCode, setVehicleCode] = useState("");
@@ -13,7 +14,7 @@ const VehicleSection = () =>{
     const [fuelType, setFuelType] = useState("");
     const [status, setStatus] = useState("");
     const [remark, setRemark] = useState("");
-    const [staffId, setStaffId] = useState([]);
+    const [staffId, setStaffId] = useState("");
 
     const dispatch = useDispatch();
     const vehicles = useSelector((state : RootState) => state.vehicles.vehicles);
@@ -21,6 +22,40 @@ const VehicleSection = () =>{
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const handleAddVehicle = () => {
+        dispatch(
+            addVehicle({vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,remark,staffId})
+        );
+
+        setVehicleCode('');
+        setLicensePlateNumber("");
+        setVehicleCategory("");
+        setFuelType("");
+        setStatus("");
+        setRemark("");
+        setStaffId("");
+        handleClose();
+    }
+
+    const hendleUpdateVehicle = () => {
+        dispatch(
+            updateVehicle({vehicleCode,licensePlateNumber,vehicleCategory,fuelType,status,remark,staffId})
+        );
+        setVehicleCode('');
+        setLicensePlateNumber("");
+        setVehicleCategory("");
+        setFuelType("");
+        setStatus("");
+        setRemark("");
+        setStaffId("");
+    }
+
+    const handleDeleteVeicle = () => {
+        dispatch(deleteVehicle(vehicleCode));
+        setVehicleCode("");
+        handleClose();
+    }
 
     return(
         <div className="flex overflow-hidden bg-emerald-200">
@@ -63,7 +98,8 @@ const VehicleSection = () =>{
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>License Plate Number</Form.Label>
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>License
+                                        Plate Number</Form.Label>
                                     <Form.Control className="border-2 border-zinc-700"
                                                   style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={licensePlateNumber}
@@ -71,7 +107,8 @@ const VehicleSection = () =>{
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Vehicle Category</Form.Label>
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Vehicle
+                                        Category</Form.Label>
                                     <Form.Control className="border-2 border-zinc-700"
                                                   style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={vehicleCategory}
@@ -106,7 +143,8 @@ const VehicleSection = () =>{
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Remark</Form.Label>
+                                    <Form.Label className="font-bold"
+                                                style={{fontFamily: "'Ubuntu', sans-serif"}}>Remark</Form.Label>
                                     <Form.Control placeholder="Enter category(e.g. Cereal)"
                                                   className="border-2 border-zinc-700"
                                                   style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
@@ -116,20 +154,50 @@ const VehicleSection = () =>{
                                 <Form.Group>
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff
                                         Id</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700" aria-label="Default select example" value={staffId} onChange={e => setStaffId(e.target.value)}>
+                                    <Form.Select className="border-2 border-slate-700"
+                                                 aria-label="Default select example" value={staffId}
+                                                 onChange={e => setStaffId(e.target.value)}>
                                         <option>Staff Id</option>
                                     </Form.Select>
                                 </Form.Group>
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button className="font-bold" variant="primary" >Save</Button>
-                            <Button className="font-bold" variant="success" >Update</Button>
-                            <Button className="font-bold" variant="danger">Delete</Button>
+                            <Button className="font-bold" variant="primary" onClick={handleAddVehicle}>Save</Button>
+                            <Button className="font-bold" variant="success" onClick={hendleUpdateVehicle}>Update</Button>
+                            <Button className="font-bold" variant="danger" onClick={handleDeleteVeicle}>Delete</Button>
                             <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
                         </Modal.Footer>
                     </Modal>
                     <br/><br/>
+                    <div className="overflow-x-auto overflow-y-auto table-container">
+                        <Table striped bordered hover responsive className="custom-table">
+                            <thead>
+                            <tr>
+                                <th>Vehicle Code</th>
+                                <th>License p.No</th>
+                                <th>category</th>
+                                <th>Fuel type</th>
+                                <th>status</th>
+                                <th>RemarK</th>
+                                <th>Staff ID</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {vehicles.map((vehicle, index) => (
+                                <tr key={index}>
+                                    <td>{vehicle.vehicleCode}</td>
+                                    <td>{vehicle.licensePlateNumber}</td>
+                                    <td>{vehicle.vehicleCategory}</td>
+                                    <td>{vehicle.fuelType}</td>
+                                    <td>{vehicle.status}</td>
+                                    <td>{vehicle.remark}</td>
+                                    <td>{vehicle.staffId}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Container>
 
             </div>
