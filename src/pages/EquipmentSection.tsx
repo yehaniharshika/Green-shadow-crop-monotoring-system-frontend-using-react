@@ -1,143 +1,116 @@
-import { Navigation } from "../components/Navigation";
-import {LineChart, CartesianGrid, XAxis, YAxis, Line, Tooltip, Legend, BarChart, Bar,} from "recharts";
-import {Card, Col, Container, FormControl, Image, InputGroup, Row,} from "react-bootstrap";
-import { MdSearch } from "react-icons/md";
-import {SiGooglemessages} from "react-icons/si";
+import {Navigation} from "../components/Navigation.tsx";
+import {Col, Container, Form, Row} from "react-bootstrap";
 
-const Dashboard = () => {
-    const data = [
-        { name: "Page A", uv: 4000, pv: 2400, amt: 2400 },
-        { name: "Page B", uv: 3000, pv: 1398, amt: 2210 },
-        { name: "Page C", uv: 2000, pv: 9800, amt: 2290 },
-        { name: "Page D", uv: 2780, pv: 3908, amt: 2000 },
-        { name: "Page E", uv: 1890, pv: 4800, amt: 2181 },
-        { name: "Page F", uv: 2390, pv: 3800, amt: 2500 },
-        { name: "Page G", uv: 3490, pv: 4300, amt: 2100 },
-    ];
+import Button from "react-bootstrap/Button";
+import React, {useState} from "react";
+import Modal from "react-bootstrap/Modal";
+import {useDispatch} from "react-redux";
+
+const EquipmentSection = () => {
+    const [equipmentId, setEquipmentId] = useState("");
+    const [equipmentName, setEquipmentName] = useState("");
+    const [equipmentType, setEquipmentType] = useState("");
+    const [status, setStatus] = useState("");
+    const [fieldCode, setFieldCode] = useState('');
+    const [staffId, setStaffId] = useState("");
+
+    const dispatch = useDispatch();
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
     return (
-        <div className="flex">
-            {/* Navigation Sidebar */}
-            <Navigation />
-
-            {/* Main Content Area */}
+        <div className="flex overflow-hidden bg-emerald-200">
+            <Navigation/>
             <div className="flex-1 p-5">
                 <Container fluid>
-                    <Row>
-                        <Col md={6}>
-                            <InputGroup className="mb-3">
-                                <FormControl placeholder="Search..."/>
-                                <InputGroup.Text>
-                                    <MdSearch/>
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </Col>
-                        <div className="d-flex align-items-center gap-2">
-
-                            <div dir="rtl">
-                                <SiGooglemessages size={25} className=""/>
+                    <Row className="align-items-center mb-3">
+                        <Col md={12}>
+                            <div className="bg-red-800 p-3 rounded top-50">
+                                <Container fluid>
+                                    <Row className="align-items-center">
+                                        <h1 className="font-bold text-2xl text-neutral-100"
+                                            style={{fontFamily: "'Ubuntu', sans-serif"}}>
+                                            Equipment Management
+                                        </h1>
+                                    </Row>
+                                </Container>
                             </div>
-
-
-                            <div className="user ms-2">
-                                <Image
-                                    src="/src/icon/woman.png"
-                                    roundedCircle
-                                    alt="User"
-                                    width={50}
-                                />
-                            </div>
-                        </div>
-                    </Row>
-
-                    <Row className="g-3">
-                        {[
-                            {id: "field", count: 98, label: "Field Count", icon: "field.png"},
-                            {id: "staff", count: 43, label: "Staff Count", icon: "staff.png"},
-                            {id: "crop", count: 7, label: "Crop Count", icon: "plant.png"},
-                            {id: "vehicle", count: 8, label: "Vehicle Count", icon: "vehicle.png"},
-                        ].map((card) => (
-                            <Col sm={6} lg={3} key={card.id}>
-                                <Card className="h-100">
-                                    <Card.Body className="d-flex align-items-center">
-                                        <img
-                                            src={`/src/icon/${card.icon}`}
-                                            alt={`${card.id}-icon`}
-                                            className="me-3"
-                                            style={{ width: 50, height: 50 }}
-                                        />
-                                        <div>
-                                            <h5 className="mb-0">{card.count}</h5>
-                                            <small>{card.label}</small>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
-
-                    {/* Chart Section */}
-                    <Row>
-                        <Col md={6}>
-                            <Card>
-                                <Card.Body>
-                                    <h5>Line Chart</h5>
-                                    <LineChart
-                                        width={400}
-                                        height={300}
-                                        data={data}
-                                        margin={{
-                                            top: 5,
-                                            right: 30,
-                                            left: 20,
-                                            bottom: 5,
-                                        }}
-                                    >
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="name" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <Line
-                                            type="monotone"
-                                            dataKey="pv"
-                                            stroke="#8884d8"
-                                            activeDot={{ r: 8 }}
-                                        />
-                                    </LineChart>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col md={6}>
-                            <Card>
-                                <Card.Body>
-                                    <h5>Bar Chart</h5>
-                                    <BarChart
-                                        width={400}
-                                        height={300}
-                                        data={data}
-                                        margin={{
-                                            top: 5,
-                                            right: 30,
-                                            left: 20,
-                                            bottom: 5,
-                                        }}
-                                    >
-                                        <CartesianGrid strokeDasharray="3 3" />
-                                        <XAxis dataKey="name" />
-                                        <YAxis />
-                                        <Tooltip />
-                                        <Legend />
-                                        <Bar dataKey="uv" fill="#82ca9d" />
-                                    </BarChart>
-                                </Card.Body>
-                            </Card>
                         </Col>
                     </Row>
+                    <br/>
+                    <Button variant="primary" onClick={handleShow} className="h-1/5 max-w-40 font-bold"
+                            style={{fontFamily: "'Ubuntu', sans-serif"}}>
+                        + Add Equipment
+                    </Button>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Details Form</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body  className="bg-blue-300">
+                            <Form>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Id</Form.Label>
+                                    <Form.Control className="border-2 border-slate-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                  value={equipmentId} onChange={e => setEquipmentId(e.target.value)}/>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Name</Form.Label>
+                                    <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                  value={equipmentName} onChange={e => setEquipmentName(e.target.value)}/>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold"
+                                                style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Type</Form.Label>
+                                    <Form.Select className="border-2 border-slate-700"  style={{fontFamily: "'Ubuntu', sans-serif"}} value={equipmentType}
+                                                 onChange={e => setEquipmentType(e.target.value)}>
+                                        <option value="">Select type</option>
+                                        <option value="Electrical">Electrical</option>
+                                        <option value="Mechanical">Mechanical</option>
+                                    </Form.Select>
+                                </Form.Group>
+
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold"
+                                                style={{fontFamily: "'Ubuntu', sans-serif"}}>Status</Form.Label>
+                                    <Form.Select className="border-2 border-slate-700"  style={{fontFamily: "'Ubuntu', sans-serif"}} value={status}
+                                                 onChange={e => setStatus(e.target.value)}>
+                                        <option value="">Select status</option>
+                                        <option value="Available">Available</option>
+                                        <option value="Out of Service">Out of Service</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label className="font-bold"
+                                                style={{fontFamily: "'Ubuntu', sans-serif"}}>Field Code</Form.Label>
+                                    <Form.Select className="border-2 border-slate-700"  aria-label="Default select example">
+                                        <option>Field Code</option>
+                                    </Form.Select>
+                                </Form.Group>
+                                <Form.Group>
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff Id</Form.Label>
+                                    <Form.Select className="border-2 border-slate-700"  aria-label="Default select example">
+                                        <option>Staff Id</option>
+                                    </Form.Select>
+                                </Form.Group>
+
+                            </Form>
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button className="font-bold" variant="primary" >Save</Button>
+                            <Button className="font-bold" variant="success" >Update</Button>
+                            <Button className="font-bold" variant="danger" >Delete</Button>
+                            <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
+                        </Modal.Footer>
+                    </Modal>
                 </Container>
             </div>
+
         </div>
-    );
+    )
 };
 
-export default Dashboard;
+export default EquipmentSection;
