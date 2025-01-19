@@ -207,7 +207,17 @@ const CropSection = () => {
                                 </tr>
                                 </thead>
                                 <tbody>
-
+                                {crops.map((crop, index) => (
+                                    <tr key={index}>
+                                        <td>{crop.cropCode}</td>
+                                        <td>{crop.cropCommonName}</td>
+                                        <td>{crop.cropScientificName}</td>
+                                        <td><img src={crop.cropImage || ''} alt="Crop Image" className="img-preview"/></td>
+                                        <td>{crop.cropCategory}</td>
+                                        <td>{crop.season}</td>
+                                        <td>{crop.fieldCode}</td>
+                                    </tr>
+                                ))}
                                 </tbody>
                             </Table>
                         </div>
