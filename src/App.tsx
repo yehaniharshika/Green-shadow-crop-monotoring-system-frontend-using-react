@@ -12,6 +12,7 @@ import StaffSection from './pages/StaffSection.tsx';
 import EquipmentSection from "./pages/EquipmentSection.tsx";
 import CropSection from "./pages/CropSection.tsx";
 import VehicleSection from "./pages/VehicleSection.tsx";
+import LogSection from "./pages/LogSection.tsx";
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                 { path: '/crop', element: <CropSection /> },
                 { path: '/equipment', element: <EquipmentSection/> },
                 { path: '/vehicle', element: <VehicleSection /> },
+                { path: '/log', element: <LogSection /> },
             ],
         },
     ]);

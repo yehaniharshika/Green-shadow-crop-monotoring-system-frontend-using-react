@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Log} from "../models/Log.ts";
 
-
 export interface LogState {
     logs:Log[];
 }
