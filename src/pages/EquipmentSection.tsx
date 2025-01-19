@@ -6,7 +6,7 @@ import {useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
-import {addEquipment} from "../reducers/EquipmentSlice.ts";
+import {addEquipment, deleteEquipment, updateEquipment} from "../reducers/EquipmentSlice.ts";
 
 const EquipmentSection = () => {
     const [equipmentId, setEquipmentId] = useState("");
@@ -33,6 +33,26 @@ const EquipmentSection = () => {
         setStatus('');
         setFieldCode('');
         setStaffId('');
+        handleClose();
+    }
+
+    //update equipment
+    const handleUpdateEquipment = () => {
+        dispatch(updateEquipment({equipmentId,equipmentName,equipmentType,status,fieldCode,staffId})
+        );
+        setEquipmentId('');
+        setEquipmentName('');
+        setEquipmentType('');
+        setStatus('');
+        setFieldCode('');
+        setStaffId('');
+        handleClose();
+    }
+
+    //delete equipment
+    const handleDeleteEquipment = () => {
+        dispatch(deleteEquipment(equipmentId));
+        setEquipmentId('');
         handleClose();
     }
     return (
@@ -127,8 +147,8 @@ const EquipmentSection = () => {
                         </Modal.Body>
                         <Modal.Footer>
                             <Button className="font-bold" variant="primary" onClick={handleAddEquipment}>Save</Button>
-                            <Button className="font-bold" variant="success">Update</Button>
-                            <Button className="font-bold" variant="danger">Delete</Button>
+                            <Button className="font-bold" variant="success" onClick={handleUpdateEquipment}>Update</Button>
+                            <Button className="font-bold" variant="danger" onClick={handleDeleteEquipment}>Delete</Button>
                             <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
                         </Modal.Footer>
                     </Modal>
