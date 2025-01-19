@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {addStaff, deleteStaff, updateStaff} from "../reducers/StaffSlice.ts";
+import "../components/styles/Staff.css"
 
 const StaffSection = () => {
     const [staffId, setStaffId] = useState("");
@@ -299,7 +300,7 @@ const StaffSection = () => {
                     </Modal>
                     <br/>
                     <br/>
-                    <Row className="table-container">
+                    <div className="table-container">
                         <Table
                             striped
                             bordered
@@ -348,7 +349,7 @@ const StaffSection = () => {
                             ))}
                             </tbody>
                         </Table>
-                    </Row>
+                    </div>
                 </Container>
             </div>
         </div>
