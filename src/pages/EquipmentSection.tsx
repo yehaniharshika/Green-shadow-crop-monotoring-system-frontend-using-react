@@ -1,10 +1,12 @@
 import {Navigation} from "../components/Navigation.tsx";
-import {Col, Container, Form, Row} from "react-bootstrap";
+import {Col, Container, Form, Row, Table} from "react-bootstrap";
 
 import Button from "react-bootstrap/Button";
-import React, {useState} from "react";
+import {useState} from "react";
 import Modal from "react-bootstrap/Modal";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../store/Store.ts";
+import {addEquipment} from "../reducers/EquipmentSlice.ts";
 
 const EquipmentSection = () => {
     const [equipmentId, setEquipmentId] = useState("");
@@ -19,7 +21,20 @@ const EquipmentSection = () => {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+    const equipments = useSelector((state : RootState) => state.equipments.equipments);
 
+    //add equipments
+    const handleAddEquipment = () => {
+        dispatch(addEquipment({equipmentId,equipmentName,equipmentType,status,fieldCode,staffId})
+        )
+        setEquipmentId('');
+        setEquipmentName('');
+        setEquipmentType('');
+        setStatus('');
+        setFieldCode('');
+        setStaffId('');
+        handleClose();
+    }
     return (
         <div className="flex overflow-hidden bg-emerald-200">
             <Navigation/>
@@ -46,26 +61,33 @@ const EquipmentSection = () => {
                     </Button>
                     <Modal show={show} onHide={handleClose}>
                         <Modal.Header closeButton>
-                            <Modal.Title className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Details Form</Modal.Title>
+                            <Modal.Title className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment
+                                Details Form</Modal.Title>
                         </Modal.Header>
-                        <Modal.Body  className="bg-blue-300">
+                        <Modal.Body className="bg-blue-300">
                             <Form>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Id</Form.Label>
-                                    <Form.Control className="border-2 border-slate-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment
+                                        Id</Form.Label>
+                                    <Form.Control className="border-2 border-slate-700"
+                                                  style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                   value={equipmentId} onChange={e => setEquipmentId(e.target.value)}/>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Name</Form.Label>
-                                    <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
-                                                  value={equipmentName} onChange={e => setEquipmentName(e.target.value)}/>
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment
+                                        Name</Form.Label>
+                                    <Form.Control className="border-2 border-zinc-700"
+                                                  style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                  value={equipmentName}
+                                                  onChange={e => setEquipmentName(e.target.value)}/>
                                 </Form.Group>
 
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold"
                                                 style={{fontFamily: "'Ubuntu', sans-serif"}}>Equipment Type</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"  style={{fontFamily: "'Ubuntu', sans-serif"}} value={equipmentType}
+                                    <Form.Select className="border-2 border-slate-700"
+                                                 style={{fontFamily: "'Ubuntu', sans-serif"}} value={equipmentType}
                                                  onChange={e => setEquipmentType(e.target.value)}>
                                         <option value="">Select type</option>
                                         <option value="Electrical">Electrical</option>
@@ -76,7 +98,8 @@ const EquipmentSection = () => {
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold"
                                                 style={{fontFamily: "'Ubuntu', sans-serif"}}>Status</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"  style={{fontFamily: "'Ubuntu', sans-serif"}} value={status}
+                                    <Form.Select className="border-2 border-slate-700"
+                                                 style={{fontFamily: "'Ubuntu', sans-serif"}} value={status}
                                                  onChange={e => setStatus(e.target.value)}>
                                         <option value="">Select status</option>
                                         <option value="Available">Available</option>
@@ -86,13 +109,16 @@ const EquipmentSection = () => {
                                 <Form.Group>
                                     <Form.Label className="font-bold"
                                                 style={{fontFamily: "'Ubuntu', sans-serif"}}>Field Code</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"  aria-label="Default select example">
+                                    <Form.Select className="border-2 border-slate-700"
+                                                 aria-label="Default select example">
                                         <option>Field Code</option>
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group>
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff Id</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"  aria-label="Default select example">
+                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff
+                                        Id</Form.Label>
+                                    <Form.Select className="border-2 border-slate-700"
+                                                 aria-label="Default select example">
                                         <option>Staff Id</option>
                                     </Form.Select>
                                 </Form.Group>
@@ -100,12 +126,39 @@ const EquipmentSection = () => {
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button className="font-bold" variant="primary" >Save</Button>
-                            <Button className="font-bold" variant="success" >Update</Button>
-                            <Button className="font-bold" variant="danger" >Delete</Button>
+                            <Button className="font-bold" variant="primary" onClick={handleAddEquipment}>Save</Button>
+                            <Button className="font-bold" variant="success">Update</Button>
+                            <Button className="font-bold" variant="danger">Delete</Button>
                             <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
                         </Modal.Footer>
                     </Modal>
+                    <br/><br/>
+                    <div className="overflow-x-auto overflow-y-auto table-container">
+                        <Table striped bordered hover responsive className="custom-table">
+                            <thead>
+                            <tr>
+                                <th>Equipment Id</th>
+                                <th>Equipment Name</th>
+                                <th>Equipment Type</th>
+                                <th>status</th>
+                                <th>Field Code</th>
+                                <th>Staff Id</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {equipments.map((equipment, index) => (
+                                <tr key={index}>
+                                    <td>{equipment.equipmentId}</td>
+                                    <td>{equipment.equipmentName}</td>
+                                    <td>{equipment.equipmentType}</td>
+                                    <td>{equipment.status}</td>
+                                    <td>{equipment.fieldCode}</td>
+                                    <td>{equipment.staffId}</td>
+                                </tr>
+                            ))}
+                            </tbody>
+                        </Table>
+                    </div>
                 </Container>
             </div>
 
