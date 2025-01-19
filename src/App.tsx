@@ -30,7 +30,7 @@ function App() {
                 { path: '/crop', element: <CropSection /> },
                 { path: '/equipment', element: <EquipmentSection/> },
                 { path: '/vehicle', element: <VehicleSection /> },
-                { path: '/log', element: <LogSection /> },
+                { path: '/logs', element: <LogSection /> },
             ],
         },
     ]);
