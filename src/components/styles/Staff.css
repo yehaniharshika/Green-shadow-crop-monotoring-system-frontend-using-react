@@ -1,0 +1,37 @@
+.table-container {
+    max-width: 100%;
+    overflow-x: auto; /* Allow horizontal scrolling */
+    overflow-y: hidden; /* Prevent unnecessary vertical scrollbars */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: #fff;
+}
+
+/* Custom styles for the table */
+.custom-table {
+    width: 100%;
+    min-width: 1400px; /* Minimum width for the table */
+    border-collapse: collapse;
+}
+
+@media (max-width: 1400px) {
+    .table-container {
+        overflow-x: auto; /* Enable horizontal scrolling for smaller screens */
+    }
+
+    .custom-table {
+        min-width: unset; /* Allow table to shrink naturally */
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-table th,
+    .custom-table td {
+        font-size: 0.85rem; /* Reduce font size for smaller screens */
+        white-space: nowrap; /* Prevent wrapping of text */
+    }
+
+    .table-container {
+        padding: 10px; /* Add padding around the table on small devices */
+    }
+}
