@@ -5,6 +5,7 @@ import StaffSlice from "../reducers/StaffSlice.ts";
 import CropSlice from "../reducers/CropSlice.ts";
 import EquipmentSlice from "../reducers/EquipmentSlice.ts";
 import VehicleSlice from "../reducers/VehicleSlice.ts";
+import LogsSlice from "../reducers/LogsSlice.ts";
 
 
 const store = configureStore({
@@ -15,6 +16,7 @@ const store = configureStore({
         crops: CropSlice,
         equipments: EquipmentSlice,
         vehicles: VehicleSlice,
+        logs: LogsSlice,
     },
 });
 
