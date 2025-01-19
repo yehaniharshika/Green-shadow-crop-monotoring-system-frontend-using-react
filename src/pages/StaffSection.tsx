@@ -6,7 +6,6 @@ import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
 import {addStaff, deleteStaff, updateStaff} from "../reducers/StaffSlice.ts";
-import "../components/styles/Staff.css";
 
 const StaffSection = () => {
     const [staffId, setStaffId] = useState("");
@@ -124,7 +123,7 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff
                                                 ID</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                          value={staffId}  onChange={e => setStaffId(e.target.value)} placeholder="Enter Staff ID"/>
                                         </Form.Group>
                                     </Col>
@@ -134,7 +133,7 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>First
                                                 Name</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" value={firstName} onChange={e => setFirstName(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control value={firstName} onChange={e => setFirstName(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter first name"/>
                                         </Form.Group>
                                     </Col>
@@ -146,7 +145,7 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Last
                                                 Name</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter last name" value={lastName} onChange={e => setLastName(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -156,8 +155,8 @@ const StaffSection = () => {
                                         <Form.Group controlId="gender">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Gender</Form.Label>
-                                            <Form.Select  className="border-2 border-zinc-700" aria-label="Default select example" style={{fontFamily: "'Ubuntu', sans-serif"}} value={gender} onChange={e => setGender(e.target.value)}>
-                                                <option >Select gender</option>
+                                            <Form.Select style={{fontFamily: "'Ubuntu', sans-serif"}} value={gender} onChange={e => setGender(e.target.value)}>
+                                                <option value="" selected>Select gender</option>
                                                 <option value="Male">Male</option>
                                                 <option value="Female">Female</option>
                                                 <option value="Other">Other</option>
@@ -173,7 +172,7 @@ const StaffSection = () => {
                                         <Form.Group controlId="address-line-01">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line 01(B. No)</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter Building No" value={addressLine1} onChange={e => setAddressLine1(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -183,7 +182,7 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
                                                 02(Lane)</Form.Label>
-                                            <Form.Control className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter Lane" value={addressLine2} onChange={e => setAddressLine2(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -195,15 +194,18 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
                                                 03(City)</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text" placeholder="Enter City" value={addressLine3} onChange={e => setAddressLine3(e.target.value)}/>
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                          placeholder="Enter City" value={addressLine3} onChange={e => setAddressLine3(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
 
                                     <Col md={6}>
                                         <Form.Group controlId="address-line-04">
                                             <Form.Label className="font-bold"
-                                                        style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line 04(State)</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" placeholder="Enter state" value={addressLine4} onChange={e => setAddressLine4(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"/>
+                                                        style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line
+                                                04(State)</Form.Label>
+                                            <Form.Control placeholder="Enter state" value={addressLine4} onChange={e => setAddressLine4(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                          />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -214,7 +216,8 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Address Line 05(P.
                                                 code)</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700"placeholder="Enter Postal Code" value={addressLine5} onChange={e => setAddressLine5(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"/>
+                                            <Form.Control placeholder="Enter Postal Code" value={addressLine5} onChange={e => setAddressLine5(e.target.value)} style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                                          />
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -226,7 +229,7 @@ const StaffSection = () => {
                                         <Form.Group controlId="date-of-birth">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Date Of Birth</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="date" value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)}/>
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="date" value={dateOfBirth} onChange={e => setDateOfBirth(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
 
@@ -234,7 +237,7 @@ const StaffSection = () => {
                                         <Form.Group controlId="joined-date">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Joined Date</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="date" value={joinedDate} onChange={e => setJoinedDate(e.target.value)}/>
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="date" value={joinedDate} onChange={e => setJoinedDate(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
                                 </Row>
@@ -243,7 +246,7 @@ const StaffSection = () => {
                                         <Form.Group controlId="designation">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Designation</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter designation" value={designation} onChange={e => setDesignation(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -252,7 +255,7 @@ const StaffSection = () => {
                                         <Form.Group controlId="contact-number">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Contact Number</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="tel"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="tel"
                                                           placeholder="Enter contact-number" value={contactNumber} onChange={e => setContactNumber(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -263,7 +266,7 @@ const StaffSection = () => {
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Email Address
                                                 03(City)</Form.Label>
-                                            <Form.Control  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
+                                            <Form.Control style={{fontFamily: "'Ubuntu', sans-serif"}} type="text"
                                                           placeholder="Enter email address" value={email} onChange={e => setEmail(e.target.value)}/>
                                         </Form.Group>
                                     </Col>
@@ -272,8 +275,8 @@ const StaffSection = () => {
                                         <Form.Group controlId="role">
                                             <Form.Label className="font-bold"
                                                         style={{fontFamily: "'Ubuntu', sans-serif"}}>Role</Form.Label>
-                                            <Form.Select  className="border-2 border-zinc-700" style={{fontFamily: "'Ubuntu', sans-serif"}} value={role} onChange={e => setRole(e.target.value)}>
-                                                <option >Select role</option>
+                                            <Form.Select style={{fontFamily: "'Ubuntu', sans-serif"}} value={role} onChange={e => setRole(e.target.value)}>
+                                                <option selected>Select role</option>
                                                 <option value="MANAGER">MANAGER</option>
                                                 <option value="ADMINISTRATIVE">ADMINISTRATIVE</option>
                                                 <option value="SCIENTIST">SCIENTIST</option>
@@ -296,13 +299,13 @@ const StaffSection = () => {
                     </Modal>
                     <br/>
                     <br/>
-                    <div className="table-container">
+                    <Row className="table-container">
                         <Table
                             striped
                             bordered
                             hover
                             responsive
-                            className="table-auto border border-gray-200 w-full"
+                            className="custom-table"
                         >
                             <thead>
                             <tr>
@@ -345,7 +348,7 @@ const StaffSection = () => {
                             ))}
                             </tbody>
                         </Table>
-                    </div>
+                    </Row>
                 </Container>
             </div>
         </div>
