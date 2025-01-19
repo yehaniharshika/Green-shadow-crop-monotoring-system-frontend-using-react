@@ -4,6 +4,7 @@ import FieldSlice from "../reducers/FieldSlice.ts";
 import StaffSlice from "../reducers/StaffSlice.ts";
 import CropSlice from "../reducers/CropSlice.ts";
 import EquipmentSlice from "../reducers/EquipmentSlice.ts";
+import VehicleSlice from "../reducers/VehicleSlice.ts";
 
 
 const store = configureStore({
@@ -13,6 +14,7 @@ const store = configureStore({
         staff: StaffSlice,
         crops: CropSlice,
         equipments: EquipmentSlice,
+        vehicles: VehicleSlice,
     },
 });
 
