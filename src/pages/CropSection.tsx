@@ -3,7 +3,9 @@ import {Col, Container, Form, Row, Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import React, {useState} from "react";
 import Modal from "react-bootstrap/Modal";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {addCrop, deleteCrop, updateCrop} from "../reducers/CropSlice.ts";
+import {RootState} from "../store/Store.ts";
 
 
 const CropSection = () => {
@@ -18,6 +20,7 @@ const CropSection = () => {
     const dispatch = useDispatch();
 
     const [show, setShow] = useState(false);
+    const crops = useSelector((state : RootState) => state.crops.crops);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -32,6 +35,42 @@ const CropSection = () => {
             reader.readAsDataURL(file);
         }
     };
+
+    // Add crop
+    const handleAddCrop = () => {
+        dispatch(
+            addCrop({cropCode,cropCommonName,cropScientificName,cropImage,cropCategory,season,fieldCode})
+        );
+        setCropCode('');
+        setCropCommonName('');
+        setCropScientificName('');
+        setCropImage(null);
+        setCropCategory('');
+        setSeason('');
+        setFieldCode('');
+        handleClose();
+    }
+
+    //update crop
+    const handleUpdateCrop = () => {
+        dispatch(updateCrop({cropCode,cropCommonName,cropScientificName,cropImage,cropCategory,season,fieldCode})
+        );
+        setCropCode('');
+        setCropCommonName('');
+        setCropScientificName('');
+        setCropImage(null);
+        setCropCategory('');
+        setSeason('');
+        setFieldCode('');
+        handleClose();
+    }
+
+    //delete crop
+    const handleDeleteCrop = () => {
+        dispatch(deleteCrop(cropCode));
+        setCropCode('')
+        handleClose();
+    }
 
     return (
         <>
@@ -147,9 +186,9 @@ const CropSection = () => {
                                 </Form>
                             </Modal.Body>
                             <Modal.Footer>
-                                <Button className="font-bold" variant="primary">Save</Button>
-                                <Button className="font-bold" variant="success">Update</Button>
-                                <Button className="font-bold" variant="danger">Delete</Button>
+                                <Button className="font-bold" variant="primary" onClick={handleAddCrop}>Save</Button>
+                                <Button className="font-bold" variant="success" onClick={handleUpdateCrop}>Update</Button>
+                                <Button className="font-bold" variant="danger" onClick={handleDeleteCrop}>Delete</Button>
                                 <Button className="font-bold" variant="secondary" onClick={handleClose}>Close</Button>
                             </Modal.Footer>
                         </Modal>
@@ -158,12 +197,13 @@ const CropSection = () => {
                             <Table striped bordered hover responsive className="custom-table">
                                 <thead>
                                 <tr>
+                                    <th>Crop Code</th>
+                                    <th>Crop Common Name</th>
+                                    <th>Crop Scientific Name</th>
+                                    <th>Crop Image</th>
+                                    <th>Crop Category</th>
+                                    <th>Season</th>
                                     <th>Field Code</th>
-                                    <th>Field Name</th>
-                                    <th>Field Location</th>
-                                    <th>Field Size</th>
-                                    <th>Field Image 01</th>
-                                    <th>Field Image 02</th>
                                 </tr>
                                 </thead>
                                 <tbody>
