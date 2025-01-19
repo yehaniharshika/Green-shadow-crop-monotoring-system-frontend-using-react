@@ -9,9 +9,9 @@ import {Navigate} from "react-router-dom";
 import RootLayout from "./components/RootLayout.tsx";
 import FieldSection from "./pages/FieldSection.tsx";
 import StaffSection from './pages/StaffSection.tsx';
-import Vehicle from "./pages/Vehicle.tsx";
 import EquipmentSection from "./pages/EquipmentSection.tsx";
 import CropSection from "./pages/CropSection.tsx";
+import VehicleSection from "./pages/VehicleSection.tsx";
 
 
 function App() {
@@ -28,7 +28,7 @@ function App() {
                 { path: '/staff', element: <StaffSection /> },
                 { path: '/crop', element: <CropSection /> },
                 { path: '/equipment', element: <EquipmentSection/> },
-                { path: '/vehicle', element: <Vehicle /> },
+                { path: '/vehicle', element: <VehicleSection /> },
             ],
         },
     ]);

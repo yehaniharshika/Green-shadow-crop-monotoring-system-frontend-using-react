@@ -18,9 +18,8 @@ const CropSection = () => {
     const [season,setSeason] = useState("");
     const [fieldCode,setFieldCode] = useState("");
     const dispatch = useDispatch();
-
-    const [show, setShow] = useState(false);
     const crops = useSelector((state : RootState) => state.crops.crops);
+    const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
