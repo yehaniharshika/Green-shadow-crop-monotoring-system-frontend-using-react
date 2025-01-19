@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import AuthSlice from "../reducers/AuthSlice.ts";
 import FieldSlice from "../reducers/FieldSlice.ts";
 import StaffSlice from "../reducers/StaffSlice.ts";
+import CropSlice from "../reducers/CropSlice.ts";
 
 
 const store = configureStore({
@@ -9,6 +10,7 @@ const store = configureStore({
         auth: AuthSlice,
         fields: FieldSlice,
         staff: StaffSlice,
+        crops: CropSlice,
     },
 });
 
