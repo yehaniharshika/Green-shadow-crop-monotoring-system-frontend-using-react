@@ -54,7 +54,7 @@
 .table-container {
     margin: 20px;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #d0f1ed;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     max-height: 660px;
@@ -63,7 +63,7 @@
 }
 
 .custom-table {
-    background-color: #fff;
+    background-color: #d0f1ed;
     border-collapse: collapse;
     width: 100%; /* Ensures the table takes up the full width of its container */
 }

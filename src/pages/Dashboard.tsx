@@ -34,6 +34,12 @@ const Dashboard = () => {
         { name: "Apr", growth: 75, target: 80 },
         { name: "May", growth: 90, target: 95 },
         { name: "Jun", growth: 100, target: 110 },
+        { name: "Jul", growth: 100, target: 110 },
+        { name: "Aug", growth: 100, target: 110 },
+        { name: "Sep", growth: 60, target: 110 },
+        { name: "Oct", growth: 80, target: 120 },
+        { name: "Nov", growth: 100, target: 110 },
+        { name: "Dec", growth: 100, target: 110 },
     ];
 
     // Data for Bar Chart (Crop Yield Analytics)
@@ -61,13 +67,13 @@ const Dashboard = () => {
                 <Container fluid>
                     <Row className="align-items-center mb-3">
                         <Col md={12}>
-                            <div className="bg-red-800 p-3 rounded top-50">
+                            <div className="bg-teal-600 p-3 rounded top-50">
                                 <Container fluid>
                                     <Row className="align-items-center">
                                         {/* Search Field */}
                                         <Col md={6}>
                                             <InputGroup>
-                                                <FormControl placeholder="Search..." />
+                                                <FormControl className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }} placeholder="Search..." />
                                                 <InputGroup.Text>
                                                     <MdSearch />
                                                 </InputGroup.Text>
@@ -93,11 +99,11 @@ const Dashboard = () => {
                         </Col>
                     </Row>
 
-
+                    <br/><br/>
                     <Row className="g-3">
                         {[
-                            { id: "field", count: 98, label: "Field Count", icon: "field.png" },
-                            { id: "staff", count: 43, label: "Staff Count", icon: "staff.png" },
+                            { id: "field", count: 18, label: "Field Count", icon: "field.png" },
+                            { id: "staff", count: 13, label: "Staff Count", icon: "staff.png" },
                             { id: "crop", count: 7, label: "Crop Count", icon: "plant.png" },
                             { id: "vehicle", count: 8, label: "Vehicle Count", icon: "vehicle.png" },
                         ].map((card) => (
@@ -111,8 +117,8 @@ const Dashboard = () => {
                                             style={{ width: 66, height: 66 }}
                                         />
                                         <div>
-                                            <h5 className="text-primary font-bold font-mono text-2xl">{card.count}</h5>
-                                            <small className="text-secondary text-lg font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
+                                            <h5 className="text-white font-bold font-mono text-2xl">{card.count}</h5>
+                                            <small className="text-white text-lg font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
                                                 {card.label}
                                             </small>
                                         </div>
@@ -127,19 +133,20 @@ const Dashboard = () => {
                     <Row>
                         <Col md={6}>
                             <animated.div style={springProps}>
-                                <Card style={{ height: 410}}>
-                                    <div className="card-header">Crop Growth Analytics</div>
-                                    <Card.Body className="bg-blue-300">
+                                <Card style={{ height: 430}}>
+                                    <div className="card-header font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>Crop Growth Analytics</div>
+                                    <Card.Body className="">
                                         <LineChart
-                                            width={400}
-                                            height={300}
+                                            width={640}
+                                            height={320}
                                             data={growthData}
                                             margin={{
-                                                top: 5,
+                                                top: 12,
                                                 right: 30,
                                                 left: 20,
                                                 bottom: 5,
                                             }}
+                                            fontFamily="'Ubuntu', sans-serif"
                                         >
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="name" />
@@ -165,19 +172,20 @@ const Dashboard = () => {
 
                         <Col md={6}>
                             <animated.div style={springProps}>
-                                <Card style={{ height: 410}}>
-                                    <div className="card-header">Crop Yield Analytics</div>
+                                <Card style={{ height: 430}}>
+                                    <div className="card-header font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>Crop Yield Analytics</div>
                                     <Card.Body>
                                         <BarChart
-                                            width={400}
-                                            height={300}
+                                            width={600}
+                                            height={320}
                                             data={yieldData}
                                             margin={{
-                                                top: 5,
+                                                top: 12,
                                                 right: 30,
                                                 left: 20,
                                                 bottom: 5,
                                             }}
+                                            fontFamily="'Ubuntu', sans-serif"
                                         >
                                             <CartesianGrid strokeDasharray="3 3" />
                                             <XAxis dataKey="name" />
@@ -191,34 +199,6 @@ const Dashboard = () => {
                                 </Card>
                             </animated.div>
                         </Col>
-                    </Row>
-                    <br/><br/>
-                    <Row className="g-3">
-                        {[
-                            { id: "field", count: 98, label: "Field Count", icon: "field.png" },
-                            { id: "staff", count: 43, label: "Staff Count", icon: "staff.png" },
-                            { id: "crop", count: 7, label: "Crop Count", icon: "plant.png" },
-                            { id: "vehicle", count: 8, label: "Vehicle Count", icon: "vehicle.png" },
-                        ].map((card) => (
-                            <Col sm={6} lg={3} key={card.id}>
-                                <Card className="h-100 bg-blue-950 shadow-lg border-3 border-amber-400 rounded-xl" style={{ minHeight: "150px" }}>
-                                    <Card.Body className="d-flex align-items-center">
-                                        <img
-                                            src={`/src/icon/${card.icon}`}
-                                            alt={`${card.id}-icon`}
-                                            className="me-5"
-                                            style={{ width: 66, height: 66 }}
-                                        />
-                                        <div>
-                                            <h5 className="text-primary font-bold font-mono text-2xl">{card.count}</h5>
-                                            <small className="text-secondary text-lg font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
-                                                {card.label}
-                                            </small>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
                     </Row>
                 </Container>
             </div>

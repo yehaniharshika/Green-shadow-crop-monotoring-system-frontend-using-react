@@ -6,6 +6,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store/Store.ts";
 import { addVehicle, deleteVehicle, updateVehicle } from "../reducers/VehicleSlice.ts";
+import {motion} from "framer-motion";
 
 const VehicleSection = () => {
     const [vehicleCode, setVehicleCode] = useState("");
@@ -75,18 +76,34 @@ const VehicleSection = () => {
                 <Container fluid>
                     <Row className="align-items-center mb-3">
                         <Col md={12}>
-                            <div className="bg-red-800 p-3 rounded top-50">
+                            <motion.div
+                                className="bg-teal-900 p-3 rounded top-50"
+                                initial={{ opacity: 0, y: -50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                whileHover={{
+                                    scale: 1.02,
+                                    boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
+                                }}
+                            >
                                 <Container fluid>
                                     <Row className="align-items-center">
-                                        <h1
+                                        <motion.h1
                                             className="font-bold text-2xl text-neutral-100"
                                             style={{ fontFamily: "'Ubuntu', sans-serif" }}
+                                            initial={{ scale: 0.8, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{
+                                                delay: 0.2,
+                                                duration: 0.6,
+                                                ease: "easeOut",
+                                            }}
                                         >
                                             Vehicle Management
-                                        </h1>
+                                        </motion.h1>
                                     </Row>
                                 </Container>
-                            </div>
+                            </motion.div>
                         </Col>
                     </Row>
                     <br />
@@ -107,12 +124,6 @@ const VehicleSection = () => {
                         </Modal.Header>
                         <Modal.Body className="bg-blue-300">
                             <Form>
-                                <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
-                                        Vehicle Code
-                                    </Form.Label>
-                                    <Form.Control className="border-2 border-slate-700" style={{ fontFamily: "'Ubuntu', sans-serif" }} type="text" value={vehicleCode} onChange={(e) => setVehicleCode(e.target.value)}/>
-                                </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Vehicle
                                         Code</Form.Label>

@@ -6,6 +6,7 @@ import React, {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {addLog, deleteLog, updateLog} from "../reducers/LogsSlice.ts";
 import {RootState} from "../store/Store.ts";
+import {motion} from "framer-motion";
 
 const LogSection = () => {
     const [logCode,setLogCode] = useState("");
@@ -70,14 +71,34 @@ const LogSection = () => {
                 <Container fluid>
                     <Row className="align-items-center mb-3">
                         <Col md={12}>
-                            <div className="bg-red-800 p-3 rounded top-50">
+                            <motion.div
+                                className="bg-teal-900 p-3 rounded top-50"
+                                initial={{ opacity: 0, y: -50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                whileHover={{
+                                    scale: 1.02,
+                                    boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
+                                }}
+                            >
                                 <Container fluid>
                                     <Row className="align-items-center">
-                                        <h1 className="font-bold text-2xl text-neutral-100"
-                                            style={{fontFamily: "'Ubuntu', sans-serif"}}>Logs Management</h1>
+                                        <motion.h1
+                                            className="font-bold text-2xl text-neutral-100"
+                                            style={{ fontFamily: "'Ubuntu', sans-serif" }}
+                                            initial={{ scale: 0.8, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{
+                                                delay: 0.2,
+                                                duration: 0.6,
+                                                ease: "easeOut",
+                                            }}
+                                        >
+                                            Logs Management
+                                        </motion.h1>
                                     </Row>
                                 </Container>
-                            </div>
+                            </motion.div>
                         </Col>
                     </Row>
                     <br/>

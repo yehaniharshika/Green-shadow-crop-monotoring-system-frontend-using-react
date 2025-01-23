@@ -1,6 +1,6 @@
 import {Navigation} from "../components/Navigation.tsx";
 import {Col, Container, Form, Row, Table} from "react-bootstrap";
-
+import { motion } from "framer-motion";
 import Button from "react-bootstrap/Button";
 import {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
@@ -76,20 +76,38 @@ const EquipmentSection = () => {
                 <Container fluid>
                     <Row className="align-items-center mb-3">
                         <Col md={12}>
-                            <div className="bg-red-800 p-3 rounded top-50">
+                            <motion.div
+                                className="bg-teal-900 p-3 rounded top-50"
+                                initial={{ opacity: 0, y: -50 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: "easeOut" }}
+                                whileHover={{
+                                    scale: 1.02,
+                                    boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.2)",
+                                }}
+                            >
                                 <Container fluid>
                                     <Row className="align-items-center">
-                                        <h1 className="font-bold text-2xl text-neutral-100"
-                                            style={{fontFamily: "'Ubuntu', sans-serif"}}>
+                                        <motion.h1
+                                            className="font-bold text-2xl text-neutral-100"
+                                            style={{ fontFamily: "'Ubuntu', sans-serif" }}
+                                            initial={{ scale: 0.8, opacity: 0 }}
+                                            animate={{ scale: 1, opacity: 1 }}
+                                            transition={{
+                                                delay: 0.2,
+                                                duration: 0.6,
+                                                ease: "easeOut",
+                                            }}
+                                        >
                                             Equipment Management
-                                        </h1>
+                                        </motion.h1>
                                     </Row>
                                 </Container>
-                            </div>
+                            </motion.div>
                         </Col>
                     </Row>
                     <br/>
-                    <Button variant="primary" onClick={handleShow} className="h-1/5 max-w-40 font-bold"
+                    <Button onClick={handleShow} className="h-1/5 max-w-40 font-bold bg-indigo-900"
                             style={{fontFamily: "'Ubuntu', sans-serif"}}>
                         + Add Equipment
                     </Button>
@@ -154,7 +172,7 @@ const EquipmentSection = () => {
                                     </Form.Select>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
-                                    <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
+                                            <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
                                         Staff Id
                                     </Form.Label>
                                     <Form.Select className="border-2 border-slate-700" aria-label="Default select example" value={staffId} onChange={(e) => setStaffId(e.target.value)}>
