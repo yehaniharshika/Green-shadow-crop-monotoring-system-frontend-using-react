@@ -5,6 +5,7 @@ export interface CropState {
     crops: Crop[];
 }
 
+// export const initialState: Crop[] =[];
 const initialState: CropState = {
     crops: [],
 }
