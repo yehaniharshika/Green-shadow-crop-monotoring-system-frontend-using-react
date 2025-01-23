@@ -1,5 +1,6 @@
 import { Navigation } from "../components/Navigation";
 import { IoNotificationsCircleOutline } from "react-icons/io5";
+import { motion } from "framer-motion";
 import {
     LineChart,
     CartesianGrid,
@@ -106,24 +107,37 @@ const Dashboard = () => {
                             { id: "staff", count: 13, label: "Staff Count", icon: "staff.png" },
                             { id: "crop", count: 7, label: "Crop Count", icon: "plant.png" },
                             { id: "vehicle", count: 8, label: "Vehicle Count", icon: "vehicle.png" },
-                        ].map((card) => (
+                        ].map((card, index) => (
                             <Col sm={6} lg={3} key={card.id}>
-                                <Card className="h-100 bg-blue-950 shadow-lg border-3 border-amber-400 rounded-xl" style={{ minHeight: "150px" }}>
-                                    <Card.Body className="d-flex align-items-center">
-                                        <img
-                                            src={`/src/icon/${card.icon}`}
-                                            alt={`${card.id}-icon`}
-                                            className="me-5"
-                                            style={{ width: 66, height: 66 }}
-                                        />
-                                        <div>
-                                            <h5 className="text-white font-bold font-mono text-2xl">{card.count}</h5>
-                                            <small className="text-white text-lg font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
-                                                {card.label}
-                                            </small>
-                                        </div>
-                                    </Card.Body>
-                                </Card>
+                                {/* Add motion.div for animation */}
+                                <motion.div
+                                    initial={{ opacity: 0, scale: 0.8, y: 50 }} // Starting state
+                                    animate={{ opacity: 1, scale: 1, y: 0 }} // Final state
+                                    transition={{
+                                        duration: 0.5,
+                                        delay: index * 0.2, // Add delay for staggered effect
+                                    }}
+                                >
+                                    <Card className="h-100 bg-blue-950 shadow-lg border-3 border-amber-400 rounded-xl" style={{ minHeight: "150px" }}>
+                                        <Card.Body className="d-flex align-items-center">
+                                            <img
+                                                src={`/src/icon/${card.icon}`}
+                                                alt={`${card.id}-icon`}
+                                                className="me-5"
+                                                style={{ width: 66, height: 66 }}
+                                            />
+                                            <div>
+                                                <h5 className="text-white font-bold font-mono text-2xl">{card.count}</h5>
+                                                <small
+                                                    className="text-white text-lg font-bold"
+                                                    style={{ fontFamily: "'Ubuntu', sans-serif" }}
+                                                >
+                                                    {card.label}
+                                                </small>
+                                            </div>
+                                        </Card.Body>
+                                    </Card>
+                                </motion.div>
                             </Col>
                         ))}
                     </Row>
