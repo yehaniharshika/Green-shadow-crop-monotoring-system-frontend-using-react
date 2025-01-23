@@ -2,7 +2,7 @@ import {Navigation} from "../components/Navigation.tsx";
 import {Col, Container, Form, Row, Table} from "react-bootstrap";
 
 import Button from "react-bootstrap/Button";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../store/Store.ts";
@@ -15,6 +15,8 @@ const EquipmentSection = () => {
     const [status, setStatus] = useState("");
     const [fieldCode, setFieldCode] = useState('');
     const [staffId, setStaffId] = useState("");
+    const [staffIds, setStaffIds] = useState<string[]>([]);
+    const [fieldCodes,setFieldCodes] = useState<string[]>([]);
 
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
@@ -22,6 +24,18 @@ const EquipmentSection = () => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const equipments = useSelector((state : RootState) => state.equipments.equipments);
+    const staff = useSelector((state: RootState) => state.staff.staff);
+    const fields = useSelector((state: RootState) => state.fields.fields);
+
+    useEffect(() => {
+        const staffIdArray = staff.map((s) => s.staffId);
+        setStaffIds(staffIdArray);
+    }, [staff]);
+
+    useEffect(() => {
+        const fieldCodeArray = fields.map((f) => f.fieldCode);
+        setFieldCodes(fieldCodeArray);
+    }, [fields]);
 
     //add equipments
     const handleAddEquipment = () => {
@@ -126,23 +140,32 @@ const EquipmentSection = () => {
                                         <option value="Out of Service">Out of Service</option>
                                     </Form.Select>
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Label className="font-bold"
-                                                style={{fontFamily: "'Ubuntu', sans-serif"}}>Field Code</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"
-                                                 aria-label="Default select example">
-                                        <option>Field Code</option>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
+                                        Field Code
+                                    </Form.Label>
+                                    <Form.Select className="border-2 border-slate-700" aria-label="Default select example" value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}>
+                                        <option value="">Select Field Code</option>
+                                        {fieldCodes.map((code) => (
+                                            <option key={code} value={code}>
+                                                {code}
+                                            </option>
+                                        ))}
                                     </Form.Select>
                                 </Form.Group>
-                                <Form.Group>
-                                    <Form.Label className="font-bold" style={{fontFamily: "'Ubuntu', sans-serif"}}>Staff
-                                        Id</Form.Label>
-                                    <Form.Select className="border-2 border-slate-700"
-                                                 aria-label="Default select example">
-                                        <option>Staff Id</option>
+                                <Form.Group className="mb-3">
+                                    <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
+                                        Staff Id
+                                    </Form.Label>
+                                    <Form.Select className="border-2 border-slate-700" aria-label="Default select example" value={staffId} onChange={(e) => setStaffId(e.target.value)}>
+                                        <option value="">Select Staff ID</option>
+                                        {staffIds.map((id) => (
+                                            <option key={id} value={id}>
+                                                {id}
+                                            </option>
+                                        ))}
                                     </Form.Select>
                                 </Form.Group>
-
                             </Form>
                         </Modal.Body>
                         <Modal.Footer>
