@@ -1,7 +1,7 @@
 import {Navigation} from "../components/Navigation.tsx";
 import {Col, Container, Form, Row, Table} from "react-bootstrap";
 import Button from "react-bootstrap/Button";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Modal from "react-bootstrap/Modal";
 import {useDispatch, useSelector} from "react-redux";
 import {addCrop, deleteCrop, updateCrop} from "../reducers/CropSlice.ts";
@@ -17,10 +17,14 @@ const CropSection = () => {
     const [cropCategory, setCropCategory] = useState("");
     const [season,setSeason] = useState("");
     const [fieldCode,setFieldCode] = useState("");
+    const [fieldCodes,setFieldCodes] = useState<string[]>([]);
     const dispatch = useDispatch();
-    const crops = useSelector((state : RootState) => state.crops.crops);
-    const [show, setShow] = useState(false);
 
+    const crops = useSelector((state : RootState) => state.crops.crops);
+    const fields = useSelector((state: RootState) => state.fields.fields);
+
+
+    const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
@@ -34,6 +38,12 @@ const CropSection = () => {
             reader.readAsDataURL(file);
         }
     };
+
+    useEffect(() => {
+        const fieldCodeArray = fields.map((f) => f.fieldCode);
+        setFieldCodes(fieldCodeArray);
+    }, [fields]);
+
 
     // Add crop
     const handleAddCrop = () => {
@@ -174,11 +184,17 @@ const CropSection = () => {
                                                       value={season} onChange={e => setSeason(e.target.value)}/>
                                     </Form.Group>
 
-                                    <Form.Group>
-                                        <Form.Label className="font-bold"
-                                                    style={{fontFamily: "'Ubuntu', sans-serif"}}>Field Code</Form.Label>
-                                        <Form.Select aria-label="Default select example">
-                                            <option>Field Code</option>
+                                    <Form.Group className="mb-3">
+                                        <Form.Label className="font-bold" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
+                                            Field Code
+                                        </Form.Label>
+                                        <Form.Select className="border-2 border-slate-700" aria-label="Default select example" value={fieldCode} onChange={(e) => setFieldCode(e.target.value)}>
+                                            <option value="">Select Field Code</option>
+                                            {fieldCodes.map((code) => (
+                                                <option key={code} value={code}>
+                                                    {code}
+                                                </option>
+                                            ))}
                                         </Form.Select>
                                     </Form.Group>
 
